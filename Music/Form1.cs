@@ -18,7 +18,6 @@ namespace Music
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             textBox1.Visible = true;
@@ -31,35 +30,39 @@ namespace Music
             button4.Visible = true;
             checkBox1.Visible = true;
         }
-
+        public static string isim="";
         private void button3_Click(object sender, EventArgs e)
         {
             bgln.Open();
             string denetMail = "";
             string denetSifre = "";
-            SqlCommand okur = new SqlCommand("select EMail,Password from kayitlar",bgln);
+            bool sifreUygunmu = false, kadiUygunmu = false;
+            SqlCommand okur = new SqlCommand("select EMail,Password,Name from kayitlar", bgln);
             SqlDataReader oku = okur.ExecuteReader();
             while (oku.Read())
             {
+                denetSifre = oku["Password"].ToString().Trim();
                 denetMail = oku["EMail"].ToString().Trim().ToLower();
+                isim = oku["Name"].ToString().Trim();
                 if (denetMail == textBox1.Text.ToLower().Trim())
                 {
-                    denetSifre = oku["Password"].ToString().Trim();
-                    if (denetSifre==textBox2.Text)
+                    if (denetSifre == textBox2.Text)
                     {
                         uygulama frm3 = new uygulama();
                         frm3.Show();
                         this.Hide();
+                        sifreUygunmu = true;
                     }
-                    else
-                    {
-                        MessageBox.Show("Şifreyi yanlış girdiniz", "Şifre Yanlış", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    kadiUygunmu = true;
                 }
-                else
-                {
-                    MessageBox.Show("Maili yanlış girdiniz", "Mail Yanlış", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            if (kadiUygunmu == false)
+            {
+                MessageBox.Show("Böyle bir kullanıcı yok. Lütfen kullanıcı adınızı denetleyin", "Kullanıcı bulunamadı");
+            }
+            else if (sifreUygunmu == false)
+            {
+                MessageBox.Show("Şifreniz yanlış.", "Şifre Yanlış");
             }
             bgln.Close();
         }
@@ -86,7 +89,7 @@ namespace Music
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked==true)
+            if (checkBox1.Checked == true)
             {
                 textBox2.PasswordChar = '\0';
             }

@@ -14,7 +14,7 @@ namespace Music
 {
     public partial class Kayit_Ol : Form
     {
-        int onay = 0, maildenetim = 0, sure = 3;
+        int onay = 0, maildenetim = 0, sure = 120;
         string gonderilecekMailAdresi = "", kisiIsımi = "";
         SqlConnection bgln = new SqlConnection("Data Source = DESKTOP-2E6646U; Initial Catalog = MusicProject; Integrated Security = True");
         public Kayit_Ol()
@@ -24,40 +24,56 @@ namespace Music
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bool devam = true;
             if (textBox1.Text != null && textBox2.Text != null && textBox3.Text != null && textBox4.Text != null)
             {
-                if (textBox4.Text.Length <= 7)
+                bgln.Open();
+                SqlCommand okur = new SqlCommand("select EMail,Password from kayitlar", bgln);
+                SqlDataReader oku = okur.ExecuteReader();
+                while (oku.Read())
                 {
-                    MessageBox.Show("Parolanızın 8 haneli olmalıdır", "Parola Uygun gereksinimleri karşılamıyor", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    textBox4.Text = "";
-                    textBox5.Text = "";
+                    if (oku["EMail"].ToString().Trim().ToLower() == textBox3.Text.Trim().ToLower())
+                    {
+                        MessageBox.Show("Bu Mail kullanımda!", "Mail Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        devam = false;
+                    }
                 }
-                else if (textBox4.Text != textBox5.Text)
+                bgln.Close();
+                if (devam == true)
                 {
-                    MessageBox.Show("Şifreler aynı olmak zorunda!", "Şifre Hatası!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBox4.Text = "";
-                    textBox5.Text = "";
-                }
-                else
-                {
-                    gonderilecekMailAdresi = textBox3.Text.Trim();
-                    kisiIsımi = textBox1.Text.Trim();
-                    maildenetim = mailGonder();
-                    label1.Visible = false;
-                    label2.Visible = false;
-                    label3.Visible = false;
-                    label4.Visible = false;
-                    label5.Visible = false;
-                    textBox1.Visible = false;
-                    textBox2.Visible = false;
-                    textBox3.Visible = false;
-                    textBox4.Visible = false;
-                    textBox5.Visible = false;
-                    button1.Visible = false;
-                    label7.Visible = true;
-                    label6.Visible = true;
-                    textBox6.Visible = true;
-                    button3.Visible = true;
+                    if (textBox4.Text.Length <= 7)
+                    {
+                        MessageBox.Show("Parolanızın 8 haneli olmalıdır", "Parola Uygun gereksinimleri karşılamıyor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        textBox4.Text = "";
+                        textBox5.Text = "";
+                    }
+                    else if (textBox4.Text != textBox5.Text)
+                    {
+                        MessageBox.Show("Şifreler aynı olmak zorunda!", "Şifre Hatası!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        textBox4.Text = "";
+                        textBox5.Text = "";
+                    }
+                    else
+                    {
+                        gonderilecekMailAdresi = textBox3.Text.Trim();
+                        kisiIsımi = textBox1.Text.Trim();
+                        maildenetim = mailGonder();
+                        label1.Visible = false;
+                        label2.Visible = false;
+                        label3.Visible = false;
+                        label4.Visible = false;
+                        label5.Visible = false;
+                        textBox1.Visible = false;
+                        textBox2.Visible = false;
+                        textBox3.Visible = false;
+                        textBox4.Visible = false;
+                        textBox5.Visible = false;
+                        button1.Visible = false;
+                        label7.Visible = true;
+                        label6.Visible = true;
+                        textBox6.Visible = true;
+                        button3.Visible = true;
+                    }
                 }
             }
             else
@@ -117,6 +133,9 @@ namespace Music
         {
             if (onay.ToString() == textBox6.Text)
             {
+                progressBar1.Value += 100;
+                label8.Text = "Kayıt Başarıyla gercekleşti.\nAna menüye aktarılıyor.";
+                System.Threading.Thread.Sleep(1000);
                 if (maildenetim == 1)
                 {
                     bgln.Open();

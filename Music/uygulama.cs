@@ -16,5 +16,9 @@ namespace Music
         {
             InitializeComponent();
         }
+        private void uygulama_Load(object sender, EventArgs e)
+        {
+            label1.Text = "Hoşgeldiniz " + Form1.isim;
+        }
     }
 }
