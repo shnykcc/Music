@@ -31,6 +31,7 @@ namespace Music
             checkBox1.Visible = true;
         }
         public static string isim="";
+        public static string kaydeden = "";
         private void button3_Click(object sender, EventArgs e)
         {
             bgln.Open();
@@ -44,6 +45,7 @@ namespace Music
                 denetSifre = oku["Password"].ToString().Trim();
                 denetMail = oku["EMail"].ToString().Trim().ToLower();
                 isim = oku["Name"].ToString().Trim();
+                kaydeden = denetMail;
                 if (denetMail == textBox1.Text.ToLower().Trim())
                 {
                     if (denetSifre == textBox2.Text)

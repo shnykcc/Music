@@ -10,56 +10,64 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class uygulama : Form
+    public partial class tur_secimi : Form
     {
-        public uygulama()
+        public static string tur;
+        public tur_secimi()
         {
             InitializeComponent();
-        }
-        public static string mood;
-        private void uygulama_Load(object sender, EventArgs e)
-        {
-            label1.Text = "Hoşgeldiniz " + Form1.isim;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mood = "huzunlu";
-            gecis();
+            tur = "rap";
+            gec();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mood = "mutlu";
-            gecis();
+            tur = "pop";
+            gec();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            mood = "calisma";
-            gecis();
+            tur = "jazz";
+            gec();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            mood = "spor";
-            gecis();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            mood = "meditasyon";
-            gecis();
+            tur = "klasik";
+            gec();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            mood = "dus";
-            gecis();
+            tur = "rock";
+            gec();
         }
-        public void gecis()
+
+        private void button6_Click(object sender, EventArgs e)
         {
-            tur_secimi gec = new tur_secimi();
+            tur = "metal";
+            gec();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            tur = "chill";
+            gec();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            tur = "rap";
+            gec();
+        }
+        public void gec()
+        {
+            Form2 gec = new Form2();
             gec.Show();
             this.Close();
         }
