@@ -131,7 +131,7 @@ namespace Music
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(85, 9);
+            this.label5.Location = new System.Drawing.Point(95, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 24);
             this.label5.TabIndex = 8;
@@ -139,18 +139,20 @@ namespace Music
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Red;
             this.button1.Location = new System.Drawing.Point(65, 250);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(142, 31);
             this.button1.TabIndex = 9;
             this.button1.Text = "Kaydet";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // music_save
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Yellow;
             this.ClientSize = new System.Drawing.Size(281, 303);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);

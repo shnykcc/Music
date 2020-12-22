@@ -46,22 +46,24 @@ namespace Music
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(139, 91);
+            this.button1.BackColor = System.Drawing.Color.SandyBrown;
+            this.button1.Location = new System.Drawing.Point(127, 91);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 89);
             this.button1.TabIndex = 1;
             this.button1.Text = "Müzik Kaydet";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(395, 91);
+            this.button2.BackColor = System.Drawing.Color.SpringGreen;
+            this.button2.Location = new System.Drawing.Point(376, 91);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 89);
             this.button2.TabIndex = 2;
             this.button2.Text = "Müzik Bul";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form2

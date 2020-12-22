@@ -13,6 +13,7 @@ namespace Music
     public partial class tur_secimi : Form
     {
         public static string tur;
+        //public static olarak bir degişken tanımlıyorum daha sonra baska formlarda kullancağım için.
         public tur_secimi()
         {
             InitializeComponent();
@@ -65,11 +66,13 @@ namespace Music
             tur = "rap";
             gec();
         }
+        //yukarıdaki button tıklamaları sayesinde tur adlı değişkenin içerisini dolduruyorum ve gec adlı methodu cagırıyorum.
         public void gec()
         {
             Form2 gec = new Form2();
             gec.Show();
             this.Close();
         }
+        //bu method sayesinde bu pencereyi tamamen kapatıyorum ve diğer form'u acıyorum.
     }
 }

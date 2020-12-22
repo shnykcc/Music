@@ -20,6 +20,7 @@ namespace Music
         private void uygulama_Load(object sender, EventArgs e)
         {
             label1.Text = "Hoşgeldiniz " + Form1.isim;
+            //Uygulama acıldığı zaman form1'de Database'den cektiğim isimle birlikte bir karşılama yazısı yazıyorum.
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,11 +58,13 @@ namespace Music
             mood = "dus";
             gecis();
         }
+        //Yukarıdaki fonksiyonlar sayesinde uygulamanın içerisine girdiğim zaman hangi tür müziğin ön plana cıkacağını ayarlama parametrelerini alıyorum. gecis adlı fonksiyonu da her birinde kullanıyorum.
         public void gecis()
         {
             tur_secimi gec = new tur_secimi();
             gec.Show();
             this.Close();
         }
+        //Gecis fonksiyonu tanımlıyorum ve diğer forma gecmeyi yapnış oluyorum. Fonksiyon tanımlayarakda fazladan kod satırı olmasını engelliyorum.
     }
 }
