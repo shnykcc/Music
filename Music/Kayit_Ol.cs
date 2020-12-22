@@ -16,7 +16,7 @@ namespace Music
     {
         int onay = 0, maildenetim = 0, sure = 120;
         string gonderilecekMailAdresi = "", kisiIsımi = "";
-        SqlConnection bgln = new SqlConnection("Data Source = DESKTOP-2E6646U; Initial Catalog = MusicProject; Integrated Security = True");
+        SqlConnection bgln = new SqlConnection("Data Source = .; Initial Catalog = MusicProject; Integrated Security = True");
         public Kayit_Ol()
         {
             InitializeComponent();
