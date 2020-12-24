@@ -91,6 +91,9 @@
     <Compile Include="uygulama.Designer.cs">
       <DependentUpon>uygulama.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="find_music.resx">
+      <DependentUpon>find_music.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -26,6 +26,10 @@ namespace Music
             bgln.Open();
             SqlCommand okur = new SqlCommand("select * from kayitlar", bgln);
             SqlDataReader oku = okur.ExecuteReader();
+            /*if (oku["Mood Name"].ToString().Trim().ToLower()==uygulama.mood&&oku["Tur Adi"].ToString().Trim().ToLower()==tur_secimi.tur)
+            {
+
+            }*/
             bgln.Close();
         }
         //form yüklendiği zaman form1'de tanımladığım isim sayesinde bir karşılama yazısı bastırıyorum ve database ulaşarak tüm kayıtları okuyorum.
