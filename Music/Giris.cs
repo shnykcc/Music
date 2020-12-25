@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data.Sql;
 using System.IO;
 
 namespace Music
@@ -118,22 +119,26 @@ namespace Music
         private void Giris_Load(object sender, EventArgs e)
         {
             bgln2.Open();
-            SqlCommand kontrolKomutu = new SqlCommand("SELECT Count(name) FROM master.dbo.sysdatabases WHERE name=@", bgln2);
+            SqlCommand kontrolKomutu = new SqlCommand(@"SELECT Count(name) FROM master.dbo.sysdatabases WHERE name=@prmVeritabani", bgln2);
+            kontrolKomutu.Parameters.AddWithValue("@prmVeriTabani", "MusicProject");
             int sonuc = (int)kontrolKomutu.ExecuteScalar();
             if (sonuc == 0)
             {
-                string dosya_yolu = @"C:\metinbelgesi.txt";
+                SqlCommand olusturma = new SqlCommand(@"create database MusicProject", bgln2);
+                olusturma.ExecuteNonQuery();
+                string dosya_yolu = @".\sqlOlusturma.sql";
                 FileStream fs = new FileStream(dosya_yolu, FileMode.OpenOrCreate, FileAccess.Read);
                 StreamReader sw = new StreamReader(fs);
                 string yazi = sw.ReadToEnd();
-                while (yazi != null)
-                {
-                    Console.WriteLine(yazi);
-                    yazi = sw.ReadLine();
-                }
+                SqlCommand kontrolKomutu2 = new SqlCommand(yazi, bgln2);
+                kontrolKomutu2.ExecuteNonQuery();
+                bgln.Open();
+                SqlCommand verigir = new SqlCommand("insert into kayitlar (Name,Surname,EMail,Password) values ('Admin',' admin',' admin','123456789')", bgln);
+                verigir.ExecuteNonQuery();
                 sw.Close();
                 fs.Close();
-
+                bgln.Close();
+                bgln2.Close();
             }
         }
     }
