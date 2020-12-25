@@ -24,7 +24,7 @@ namespace Music
             {
                 //Eğer tüm alnlar doluysa...
                 bgln.Open();
-                SqlCommand music_save = new SqlCommand("insert into music ([Name],[Mood Name],[Tur Adi],[Artist],[kaydeden]) values ('" + textBox1.Text + "','" + comboBox1.SelectedItem + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Form1.kaydeden + "')", bgln);
+                SqlCommand music_save = new SqlCommand("insert into music ([Name],[Mood Name],[Tur Adi],[Artist],[kaydeden]) values ('" + textBox1.Text + "','" + comboBox1.SelectedItem + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "')", bgln);
                 music_save.ExecuteNonQuery();
                 bgln.Close();
                 Form2 frm2 = new Form2();

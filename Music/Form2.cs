@@ -22,7 +22,7 @@ namespace Music
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            label1.Text = "Tekrar Merhaba " + Form1.isim+"!";
+            label1.Text = "Tekrar Merhaba " + Giris.isim+"!";
             bgln.Open();
             SqlCommand okur = new SqlCommand("select * from kayitlar", bgln);
             SqlDataReader oku = okur.ExecuteReader();

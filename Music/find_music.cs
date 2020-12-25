@@ -57,7 +57,7 @@ namespace Music
             if (textBox1.Text != null && textBox2.Text != null && comboBox1.SelectedItem != null && comboBox2.SelectedItem != null)
             {
                 bgln.Open();
-                SqlCommand gir = new SqlCommand("insert into music (Name,[Mood Name],[Tur Adi],Artist,kaydeden,yol) values ('"+textBox1.Text+"','"+comboBox1.SelectedItem+"','"+comboBox2.SelectedItem+"','"+textBox2.Text+"','"+Form1.kaydeden+"','"+dosyalar[sayac]+"')", bgln);
+                SqlCommand gir = new SqlCommand("insert into music (Name,[Mood Name],[Tur Adi],Artist,kaydeden,yol) values ('"+textBox1.Text+"','"+comboBox1.SelectedItem+"','"+comboBox2.SelectedItem+"','"+textBox2.Text+"','"+Giris.kaydeden+"','"+dosyalar[sayac]+"')", bgln);
                 gir.ExecuteNonQuery();
                 SqlCommand okur = new SqlCommand("select * from music", bgln);
                 SqlDataReader oku = okur.ExecuteReader();

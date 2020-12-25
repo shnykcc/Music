@@ -19,7 +19,7 @@ namespace Music
         public static string mood;
         private void uygulama_Load(object sender, EventArgs e)
         {
-            label1.Text = "Hoşgeldiniz " + Form1.isim;
+            label1.Text = "Hoşgeldiniz " + Giris.isim;
             //Uygulama acıldığı zaman form1'de Database'den cektiğim isimle birlikte bir karşılama yazısı yazıyorum.
         }
 

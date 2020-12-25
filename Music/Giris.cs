@@ -11,11 +11,10 @@ using System.Data.SqlClient;
 
 namespace Music
 {
-    public partial class Form1 : Form
+    public partial class Giris : Form
     {
-        SqlConnection bgln = new SqlConnection("Data Source = DESKTOP-2E6646U; Initial Catalog = MusicProject; Integrated Security = True");
         //sql'e baglanmak için baglantısı nesnesi oluşturuyorum.
-        public Form1()
+        public Giris()
         {
             InitializeComponent();
         }

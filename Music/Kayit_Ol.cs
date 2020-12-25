@@ -83,7 +83,7 @@ namespace Music
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1 frm1 = new Form1();
+            Giris frm1 = new Giris();
             frm1.Show();
             this.Close();
 
@@ -141,7 +141,7 @@ namespace Music
                     bgln.Open();
                     SqlCommand hesap_ekle = new SqlCommand("insert into kayitlar (Name,Surname,EMail,Password) values ('" + textBox1.Text.ToString() + "','" + textBox2.Text.ToString() + "','" + textBox3.Text.ToString() + "','" + textBox4.Text.ToString() + "')", bgln);
                     hesap_ekle.ExecuteNonQuery();
-                    Form1 frm1 = new Form1();
+                    Giris frm1 = new Giris();
                     frm1.Show();
                     bgln.Close();
                     this.Close();
