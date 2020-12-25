@@ -149,7 +149,7 @@ namespace Music
             this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // Form1
+            // Giris
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -165,8 +165,9 @@ namespace Music
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
-            this.Name = "Form1";
+            this.Name = "Giris";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Giris_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

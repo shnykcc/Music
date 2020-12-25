@@ -8,11 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace Music
 {
     public partial class Giris : Form
     {
+        SqlConnection bgln2 = new SqlConnection("Data Source=.;Initial Catalog=master;Integrated Security=True");
+        SqlConnection bgln = new SqlConnection("Data Source=.;Initial Catalog=MusicProject;Integrated Security=True");
+
+
         //sql'e baglanmak için baglantısı nesnesi oluşturuyorum.
         public Giris()
         {
@@ -31,7 +36,7 @@ namespace Music
             checkBox1.Visible = true;
             //Giriş yap buttonuna tıklayınca kullanıcı adı şifre, şifreyi göster ve giriş buttonunu görünür hale getirip diğerlerini görünmez yapıyorum.
         }
-        public static string isim="";
+        public static string isim = "";
         public static string kaydeden = "";
         //daha sonra kullanmak için 2 adet public ve static değişken oluşturuyorun.
         private void button3_Click(object sender, EventArgs e)
@@ -108,6 +113,28 @@ namespace Music
                 textBox2.PasswordChar = '*';
             }
             //eğer şifreyi göster tiki işaretliyse normal text girer gibi gösteriyor fakat tikli değilse yıldız ile görünüyor ve kullanıcı daha güvende oluyor.
+        }
+
+        private void Giris_Load(object sender, EventArgs e)
+        {
+            bgln2.Open();
+            SqlCommand kontrolKomutu = new SqlCommand("SELECT Count(name) FROM master.dbo.sysdatabases WHERE name=@", bgln2);
+            int sonuc = (int)kontrolKomutu.ExecuteScalar();
+            if (sonuc == 0)
+            {
+                string dosya_yolu = @"C:\metinbelgesi.txt";
+                FileStream fs = new FileStream(dosya_yolu, FileMode.OpenOrCreate, FileAccess.Read);
+                StreamReader sw = new StreamReader(fs);
+                string yazi = sw.ReadToEnd();
+                while (yazi != null)
+                {
+                    Console.WriteLine(yazi);
+                    yazi = sw.ReadLine();
+                }
+                sw.Close();
+                fs.Close();
+
+            }
         }
     }
 }
