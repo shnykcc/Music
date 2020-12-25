@@ -24,19 +24,29 @@ namespace Music
             {
                 //Eğer tüm alnlar doluysa...
                 bgln.Open();
-                SqlCommand music_save = new SqlCommand("insert into music ([Name],[Mood Name],[Tur Adi],[Artist],[kaydeden]) values ('" + textBox1.Text + "','" + comboBox1.SelectedItem + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "')", bgln);
+                SqlCommand music_save = new SqlCommand("insert into music ([Name],[Mood Name],[Tur Adi],[Artist],[kaydeden],yol) values ('" + textBox1.Text + "','" + comboBox1.SelectedItem + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "','Kullanıcı kayıt etti')", bgln);
                 music_save.ExecuteNonQuery();
                 bgln.Close();
-                Form2 frm2 = new Form2();
-                frm2.Show();
-                this.Close();
-                //bağlantıyı acıyorum alanlardaki degerleri database'e ekletiyorum ve doğruluğunu kontrol ediyorum. Sorunsuz bir şekilde eklendiyse baglantıyı kapatıyorum. Form2'den bir nesne oluşturuyorum diğer form'a geciyorum ve bu formu kapatıyorum.
+                label6.Visible = true;
+                label6.Text = textBox1.Text + " Şarkısı kayıt edildi.";
+                textBox1.Text = "";
+                textBox2.Text = "";
+                comboBox1.SelectedItem = "";
+                comboBox2.SelectedItem = "";
+                //bağlantıyı acıyorum alanlardaki degerleri database'e ekletiyorum ve doğruluğunu kontrol ediyorum. Sorunsuz bir şekilde eklendiyse baglantıyı kapatıyorum. Alanları sıfırlıyorum ve label6'ya başarılı olduğuna dair veri giriyorum.
             }
             else
             {
                 MessageBox.Show("Lütfen tüm alanları doldurun!", "Boş alan");
                 //Tüm alanlar dolu değilse Tüm alanları doldurunuz hatası veriyorum.
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form2 frm2 = new Form2();
+            frm2.Show();
+            this.Close();
         }
     }
 }

@@ -135,6 +135,8 @@ namespace Music
                 bgln.Open();
                 SqlCommand verigir = new SqlCommand("insert into kayitlar (Name,Surname,EMail,Password) values ('Admin',' admin',' admin','123456789')", bgln);
                 verigir.ExecuteNonQuery();
+                SqlCommand verigir2 = new SqlCommand("insert into dosyagoster (ıd,Dosya_Yolu) values ('1',' Bos')", bgln);
+                verigir2.ExecuteNonQuery();
                 sw.Close();
                 fs.Close();
                 bgln.Close();
