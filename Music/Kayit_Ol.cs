@@ -110,7 +110,6 @@ namespace Music
             smtp.Port = 587;
             smtp.Host = "smtp.live.com";
             smtp.EnableSsl = true;
-            int kontrol = 0;
             Random rnd = new Random();
             email.To.Add(gonderilecekMailAdresi);
             email.From = new MailAddress("musicprojectdeneme@hotmail.com");
