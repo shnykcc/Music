@@ -13,7 +13,7 @@ namespace Music
 {
     public partial class Form2 : Form
     {
-        SqlConnection bgln = new SqlConnection("Data Source=DESKTOP-2E6646U;Initial Catalog=MusicProject;Integrated Security=True");
+        SqlConnection bgln = new SqlConnection("Data Source=.;Initial Catalog=MusicProject;Integrated Security=True");
         //sql'e baglanmak için baglantı oluşturuyorum.
         public Form2()
         {

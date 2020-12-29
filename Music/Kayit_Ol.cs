@@ -59,6 +59,7 @@ namespace Music
                         kisiIsımi = textBox1.Text.Trim();
                         maildenetim = mailGonder();
                         label1.Visible = false;
+                        checkBox1.Visible = false;
                         label2.Visible = false;
                         label3.Visible = false;
                         label4.Visible = false;

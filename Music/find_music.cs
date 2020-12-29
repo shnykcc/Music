@@ -18,6 +18,7 @@ namespace Music
         SqlConnection bgln = new SqlConnection("Data Source =.; Initial Catalog = MusicProject; Integrated Security = True");
         string adres = "";
         string girilecekAdres = "";
+        string[] dosyaYolları;
         string[] dosyalar;
         public find_music()
         {
@@ -59,24 +60,33 @@ namespace Music
             dosyalar = Directory.GetFiles(adres);
             for (int i = 0; i < dosyalar.Length; i++)
             {
+                dosyaYolları[i] = dosyalar[i];
                 dosyalar[i] = stringReplace(dosyalar[i].Substring(9, dosyalar[i].Length - 13));
             }
             foreach (var i in dosyalar)
             {
                 Console.WriteLine(i);
             }
-            changeSongName();
             bgln.Close();
+            changeSongName();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != null && textBox2.Text != null && comboBox1.SelectedItem != null && comboBox2.SelectedItem != null)
+            if (textBox1.Text != null && textBox2.Text != null && comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && girilecekAdres != null)
             {
                 bgln.Open();
                 SqlCommand musicGir = new SqlCommand("insert into music (Name,[Mood Name],[Tur Adi],Artist,kaydeden,yol) values('" + textBox1.Text + "','" + comboBox1.SelectedItem + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "','" + girilecekAdres + "')", bgln);
                 musicGir.ExecuteNonQuery();
                 bgln.Close();
+            }
+            else if (girilecekAdres == null)
+            {
+                MessageBox.Show("Şarkı yolu yok!", "Şarkı Yolu Bulunamadı!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Tüm alanları doldurunuz!", "Boş alan var!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             changeSongName();
         }
@@ -121,36 +131,21 @@ namespace Music
                 sqlyollarim[girdiSayac] = stringReplace(sqlyollarim[girdiSayac]);
                 girdiSayac++;
             }
-            bool sayacKontrol = false;
-            for (int i = 0; i < sayac; i++)
+            bool yolKontrol = false;
+            for (int i = 0; i < dosyalar.Length; i++)
             {
-                if (i <= dosyasayac)
+                for (int j = 0; j < sqlyollarim.Length; j++)
                 {
-                    if (sqlyollarim[i] == dosyalar[dosyasayac])
+                    if (sqlyollarim[j] == dosyaYolları[i])
                     {
-                        Console.WriteLine("Aynı Olan bir DOsya bulundu!-------------------");
-                        dosyasayac++;
-                        i = -1;
-                        textBox1.Text = dosyalar[dosyasayac];
-                        girilecekAdres = dosyalar[dosyasayac];
+                        yolKontrol = true;
                     }
                 }
-                else
+                if (yolKontrol==false)
                 {
-                    sayacKontrol = true;
+                    textBox1.Text = dosyalar[i];
                 }
-                bgln.Close();
             }
-            if (sayacKontrol == true)
-            {
-                MessageBox.Show("Bu klasördeki tüm şarkılar eklenmiş! Sonraki Açışta farklı lokasyon sectirelecek!", "Başka Şarkı Yok", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                bgln.Open();
-                SqlCommand dosyaYoluDegis = new SqlCommand("UPDATE dosyagoster SET Dosya_Yolu='Bos' WHERE ıd=1", bgln);
-                dosyaYoluDegis.ExecuteNonQuery();
-                bgln.Close();
-                sayacKontrol = false;
-            }
-
             bgln.Close();
         }
         public string stringReplace(string text)
