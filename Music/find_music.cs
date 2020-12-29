@@ -58,6 +58,11 @@ namespace Music
                 bgln.Close();
             }
             dosyalar = Directory.GetFiles(adres);
+            dosyalar = new string[dosyalar.Length];
+            foreach (var i in dosyalar)
+            {
+                Console.WriteLine(i);
+            }
             for (int i = 0; i < dosyalar.Length; i++)
             {
                 dosyaYolları[i] = dosyalar[i];
@@ -70,7 +75,6 @@ namespace Music
             bgln.Close();
             changeSongName();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != null && textBox2.Text != null && comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && girilecekAdres != null)
@@ -112,7 +116,7 @@ namespace Music
         }
         public void changeSongName()
         {
-            int sayac = 0, girdiSayac = 0, dosyasayac = 0;
+            int sayac = 0, girdiSayac = 0;
             bgln.Open();
             SqlCommand sqlsayi = new SqlCommand("select count(yol) as counter from music", bgln);
             SqlDataReader oku = sqlsayi.ExecuteReader();
@@ -141,7 +145,7 @@ namespace Music
                         yolKontrol = true;
                     }
                 }
-                if (yolKontrol==false)
+                if (yolKontrol == false)
                 {
                     textBox1.Text = dosyalar[i];
                 }
