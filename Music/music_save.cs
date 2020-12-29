@@ -16,7 +16,7 @@ namespace Music
         {
             InitializeComponent();
         }
-        SqlConnection bgln = new SqlConnection("Data Source = DESKTOP-2E6646U; Initial Catalog = MusicProject; Integrated Security = True");
+        SqlConnection bgln = new SqlConnection("Data Source =.; Initial Catalog = MusicProject; Integrated Security = True");
         //Database'e bağlanmak için bağlantısı oluşturuyorum.
         private void button1_Click(object sender, EventArgs e)
         {
