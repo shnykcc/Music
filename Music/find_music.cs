@@ -16,16 +16,17 @@ namespace Music
     public partial class find_music : Form
     {
         SqlConnection bgln = new SqlConnection("Data Source =.; Initial Catalog = MusicProject; Integrated Security = True");
+        int kontrolSayac = 0;
         string adres = "";
         string girilecekAdres = "";
-        string[] dosyaYolları;
-        string[] dosyalar;
+        List<string> dosyalar = new List<string>();
+        List<string> dosyaYolları = new List<string>();
         public find_music()
         {
             InitializeComponent();
         }
 
-        private void find_music_Load(object sender, EventArgs e)
+        public void find_music_Load(object sender, EventArgs e)
         {
             string dosya_yolu = "";
             bgln.Open();
@@ -57,20 +58,22 @@ namespace Music
                 }
                 bgln.Close();
             }
-            dosyalar = Directory.GetFiles(adres);
-            dosyalar = new string[dosyalar.Length];
-            foreach (var i in dosyalar)
+            string[] kopyalanacak = new string[9999];
+            kopyalanacak = Directory.GetFiles(adres);
+            for (int i = 0; i < kopyalanacak.Length; i++)
             {
-                Console.WriteLine(i);
-            }
-            for (int i = 0; i < dosyalar.Length; i++)
-            {
-                dosyaYolları[i] = dosyalar[i];
-                dosyalar[i] = stringReplace(dosyalar[i].Substring(9, dosyalar[i].Length - 13));
+                if (kopyalanacak[i] != null)
+                {
+                    dosyalar.Add(kopyalanacak[i]);
+                }
             }
             foreach (var i in dosyalar)
             {
                 Console.WriteLine(i);
+            }
+            for (int i = 0; i < dosyalar.Count; i++)
+            {
+                dosyaYolları.Add(dosyalar[i].Substring(9, dosyalar[i].Length - 13));
             }
             bgln.Close();
             changeSongName();
@@ -79,6 +82,7 @@ namespace Music
         {
             if (textBox1.Text != null && textBox2.Text != null && comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && girilecekAdres != null)
             {
+                Console.WriteLine("Girilecek Adres= " + girilecekAdres);
                 bgln.Open();
                 SqlCommand musicGir = new SqlCommand("insert into music (Name,[Mood Name],[Tur Adi],Artist,kaydeden,yol) values('" + textBox1.Text + "','" + comboBox1.SelectedItem + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "','" + girilecekAdres + "')", bgln);
                 musicGir.ExecuteNonQuery();
@@ -104,7 +108,7 @@ namespace Music
             dosyaYoluDegis.ExecuteNonQuery();
             adres = fbd.SelectedPath;
             bgln.Close();
-            dosyalar = Directory.GetFiles(adres);
+            //dosyalar = Directory.GetFiles(adres);
             changeSongName();
         }
 
@@ -117,6 +121,7 @@ namespace Music
         public void changeSongName()
         {
             int sayac = 0, girdiSayac = 0;
+            bool yolKontrolu = false;
             bgln.Open();
             SqlCommand sqlsayi = new SqlCommand("select count(yol) as counter from music", bgln);
             SqlDataReader oku = sqlsayi.ExecuteReader();
@@ -129,27 +134,30 @@ namespace Music
             bgln.Open();
             SqlCommand sqlyollari = new SqlCommand("select yol from music", bgln);
             SqlDataReader oku2 = sqlyollari.ExecuteReader();
-            while (oku2.Read() && oku2["yol"] != null)
+            while (oku2.Read())
             {
                 sqlyollarim[girdiSayac] = oku2["yol"].ToString().Trim();
                 sqlyollarim[girdiSayac] = stringReplace(sqlyollarim[girdiSayac]);
                 girdiSayac++;
             }
-            bool yolKontrol = false;
-            for (int i = 0; i < dosyalar.Length; i++)
-            {
-                for (int j = 0; j < sqlyollarim.Length; j++)
+            for (int j = 0; j < sqlyollarim.Length; j++)
+            
+                if (dosyalar[kontrolSayac] == sqlyollarim[j])
                 {
-                    if (sqlyollarim[j] == dosyaYolları[i])
-                    {
-                        yolKontrol = true;
-                    }
+                    yolKontrolu = true;
                 }
-                if (yolKontrol == false)
+                if (kontrolSayac>dosyalar.Count)
                 {
-                    textBox1.Text = dosyalar[i];
+                    MessageBox.Show("yere");
                 }
             }
+            if (yolKontrolu==false)
+            {
+                textBox1.Text = dosyalar[kontrolSayac].Substring(9, dosyalar[kontrolSayac].Length - 13);
+                girilecekAdres = dosyalar[kontrolSayac];
+            }
+            yolKontrolu = false;
+            kontrolSayac++;
             bgln.Close();
         }
         public string stringReplace(string text)
