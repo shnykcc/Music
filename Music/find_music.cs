@@ -141,7 +141,7 @@ namespace Music
                 girdiSayac++;
             }
             for (int j = 0; j < sqlyollarim.Length; j++)
-            
+            { 
                 if (dosyalar[kontrolSayac] == sqlyollarim[j])
                 {
                     yolKontrolu = true;
