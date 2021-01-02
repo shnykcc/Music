@@ -163,12 +163,12 @@ namespace Music
             {
                 for (int j = 0; j < sqlyollarim.Length; j++)
                 {
-                    if (Convert.ToString(dosyalar[kontrolSayac]) == Convert.ToString(sqlyollarim[j])&& System.ArgumentOutOfRangeException!=ture)
+                    if (Convert.ToString(dosyalar[kontrolSayac]) == Convert.ToString(sqlyollarim[j]))
                     {
                         kontrolSayac++;
                         j = 0;
                     }
-                    if (kontrolSayac > dosyalar.Count||System.ArgumentOutOfRangeException==true)
+                    if (kontrolSayac > dosyalar.Count)
                     {
                         MessageBox.Show("Burada eklenmeyen müzik yok lütfen farklı bir klasör sec", "Klasör sec", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         FolderBrowserDialog fbd = new FolderBrowserDialog();
