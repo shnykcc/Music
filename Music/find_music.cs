@@ -64,7 +64,7 @@ namespace Music
             {
                 if (kopyalanacak[i] != null)
                 {
-                    dosyalar.Add(kopyalanacak[i]);
+                    dosyalar.Add(stringReplace(kopyalanacak[i]));
                 }
             }
             foreach (var i in dosyalar)
@@ -138,24 +138,30 @@ namespace Music
             {
                 sqlyollarim[girdiSayac] = oku2["yol"].ToString().Trim();
                 sqlyollarim[girdiSayac] = stringReplace(sqlyollarim[girdiSayac]);
+
                 girdiSayac++;
             }
-            for (int j = 0; j < sqlyollarim.Length; j++)
-            { 
-                if (dosyalar[kontrolSayac] == sqlyollarim[j])
-                {
-                    yolKontrolu = true;
-                }
-                if (kontrolSayac>dosyalar.Count)
-                {
-                    MessageBox.Show("yere");
-                }
-            }
-            if (yolKontrolu==false)
+            bool SayacKontrolu = false;
+            while (SayacKontrolu == false)
             {
-                textBox1.Text = dosyalar[kontrolSayac].Substring(9, dosyalar[kontrolSayac].Length - 13);
-                girilecekAdres = dosyalar[kontrolSayac];
+                for (int j = 0; j < sqlyollarim.Length; j++)
+                {
+                    if (Convert.ToString(dosyalar[kontrolSayac]) == Convert.ToString(sqlyollarim[j]))
+                    {
+                        kontrolSayac++;
+                        j = 0;
+                    }
+                    if (kontrolSayac > dosyalar.Count)
+                    {
+                        MessageBox.Show("yere");
+                    }
+                }
+                SayacKontrolu = true;
             }
+            textBox1.Text = dosyalar[kontrolSayac].Substring(9, dosyalar[kontrolSayac].Length - 13);
+            girilecekAdres = dosyalar[kontrolSayac];
+
+            SayacKontrolu = false;
             yolKontrolu = false;
             kontrolSayac++;
             bgln.Close();
