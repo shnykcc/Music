@@ -159,16 +159,18 @@ namespace Music
             }
             /*sqlyollarım adlı arry oluşturuyorum ve önceden cektiğim sayac adlı int yardımı ile büyüklüğünü belirliyorum. baglantıyı acıyorum ve yolların hepsini kendi arry'ime türkce karakterlerden arındırarak ekliyorum */
             bool SayacKontrolu = false;
+            bgln.Close();
             while (SayacKontrolu == false)
             {
+                Console.WriteLine("Dosya sayısı= " + dosyalar.Count);
                 for (int j = 0; j < sqlyollarim.Length; j++)
                 {
-                    if (Convert.ToString(dosyalar[kontrolSayac]) == Convert.ToString(sqlyollarim[j]))
+                    if (dosyalar[kontrolSayac] == sqlyollarim[j])
                     {
                         kontrolSayac++;
                         j = 0;
                     }
-                    if (kontrolSayac > dosyalar.Count)
+                    if (kontrolSayac >= dosyalar.Count)
                     {
                         MessageBox.Show("Burada eklenmeyen müzik yok lütfen farklı bir klasör sec", "Klasör sec", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -188,6 +190,15 @@ namespace Music
                                 dosyalar.Add(stringReplace(kopyalanacak[i]));
                             }
                         }
+                        if (dosyalar.Count==0)
+                        {
+                            bgln.Close();
+                            bgln.Open();
+                            SqlCommand dosyaYoluDegis2 = new SqlCommand("UPDATE dosyagoster SET Dosya_Yolu='Bos' WHERE ıd=1", bgln);
+                            dosyaYoluDegis2.ExecuteNonQuery();
+                            bgln.Close();
+                            MessageBox.Show("İçeride müzik yok", "Müzik bulunamadı", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                         for (int i = 0; i < dosyalar.Count; i++)
                         {
                             dosyaYolları.Add(dosyalar[i].Substring(9, dosyalar[i].Length - 13));
@@ -195,6 +206,7 @@ namespace Music
                         bgln.Close();
                         changeSongName();
                     }
+                    /*Yukarıdaki fonksiyon ile eğer eklenmeyen dosya kalmadıysa klasör değişikliği yaptırıyorum.*/
                 }
                 SayacKontrolu = true;
             }

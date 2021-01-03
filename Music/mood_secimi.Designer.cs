@@ -1,7 +1,7 @@
 ﻿
 namespace Music
 {
-    partial class uygulama
+    partial class mood_secimi
     {
         /// <summary>
         /// Required designer variable.

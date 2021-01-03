@@ -59,7 +59,7 @@ namespace Music
                 {
                     if (denetSifre == textBox2.Text)
                     {
-                        uygulama frm3 = new uygulama();
+                        mood_secimi frm3 = new mood_secimi();
                         frm3.Show();
                         this.Hide();
                         sifreUygunmu = true;

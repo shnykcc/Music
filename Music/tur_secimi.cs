@@ -21,49 +21,49 @@ namespace Music
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tur = "rap";
+            tur = "Rap";
             gec();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            tur = "pop";
+            tur = "Pop";
             gec();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            tur = "jazz";
+            tur = "Jazz";
             gec();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            tur = "klasik";
+            tur = "Klasik";
             gec();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            tur = "rock";
+            tur = "Rock";
             gec();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            tur = "metal";
+            tur = "Metal";
             gec();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            tur = "chill";
+            tur = "Chill";
             gec();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            tur = "rap";
+            tur = "Trap";
             gec();
         }
         //yukarıdaki button tıklamaları sayesinde tur adlı değişkenin içerisini dolduruyorum ve gec adlı methodu cagırıyorum.
@@ -72,6 +72,11 @@ namespace Music
             Form2 gec = new Form2();
             gec.Show();
             this.Close();
+        }
+
+        private void tur_secimi_Load(object sender, EventArgs e)
+        {
+
         }
         //bu method sayesinde bu pencereyi tamamen kapatıyorum ve diğer form'u acıyorum.
     }

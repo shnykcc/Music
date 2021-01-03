@@ -85,11 +85,11 @@
     <Compile Include="tur_secimi.Designer.cs">
       <DependentUpon>tur_secimi.cs</DependentUpon>
     </Compile>
-    <Compile Include="uygulama.cs">
+    <Compile Include="mood_secimi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="uygulama.Designer.cs">
-      <DependentUpon>uygulama.cs</DependentUpon>
+    <Compile Include="mood_secimi.Designer.cs">
+      <DependentUpon>mood_secimi.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="find_music.resx">
       <DependentUpon>find_music.cs</DependentUpon>
@@ -118,8 +118,8 @@
     <EmbeddedResource Include="tur_secimi.resx">
       <DependentUpon>tur_secimi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="uygulama.resx">
-      <DependentUpon>uygulama.cs</DependentUpon>
+    <EmbeddedResource Include="mood_secimi.resx">
+      <DependentUpon>mood_secimi.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

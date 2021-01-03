@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Music
 {
-    public partial class uygulama : Form
+    public partial class mood_secimi : Form
     {
-        public uygulama()
+        public mood_secimi()
         {
             InitializeComponent();
         }
@@ -25,37 +25,37 @@ namespace Music
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mood = "huzunlu";
+            mood = "Hüzünlü";
             gecis();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mood = "mutlu";
+            mood = "Mutlu";
             gecis();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            mood = "calisma";
+            mood = "Çalışma";
             gecis();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            mood = "spor";
+            mood = "Spor";
             gecis();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            mood = "meditasyon";
+            mood = "Meditasyon";
             gecis();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            mood = "dus";
+            mood = "Duş";
             gecis();
         }
         //Yukarıdaki fonksiyonlar sayesinde uygulamanın içerisine girdiğim zaman hangi tür müziğin ön plana cıkacağını ayarlama parametrelerini alıyorum. gecis adlı fonksiyonu da her birinde kullanıyorum.

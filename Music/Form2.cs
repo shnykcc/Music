@@ -22,14 +22,31 @@ namespace Music
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            label1.Text = "Tekrar Merhaba " + Giris.isim+"!";
+            label1.Text = "Tekrar Merhaba " + Giris.isim + "!";
+            Console.WriteLine("Secilen mood= " + mood_secimi.mood + "\nSecilen Tür=" + tur_secimi.tur);
             bgln.Open();
-            SqlCommand okur = new SqlCommand("select * from kayitlar", bgln);
+            SqlCommand okur = new SqlCommand("select * from music", bgln);
             SqlDataReader oku = okur.ExecuteReader();
-            /*if (oku["Mood Name"].ToString().Trim().ToLower()==uygulama.mood&&oku["Tur Adi"].ToString().Trim().ToLower()==tur_secimi.tur)
+            while (oku.Read())
             {
+                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur)
+                {
+                    Console.WriteLine("Şarkı isimi= " + oku["Name"].ToString().Trim() + "\nArtist İsmi= " + oku["Artist"].ToString().Trim() + "\nLokasyonu= " + oku["yol"].ToString().Trim());
+                    listView1.Items.Add(new ListViewItem(new[] { oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim() }));
+                    //listView1.Items.Add(oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim());
+                }
+                else
+                {
+                    label2.Text = "Daha Fazla Müzik Ekleyin";
+                    listView1.Items.Add(new ListViewItem(new[] { "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı" }));
+                }
 
-            }*/
+            }
+            for (int i = 0; i < listView1.Columns.Count; i++)
+            {
+                listView1.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
+            
             bgln.Close();
         }
         //form yüklendiği zaman form1'de tanımladığım isim sayesinde bir karşılama yazısı bastırıyorum ve database ulaşarak tüm kayıtları okuyorum.
@@ -49,5 +66,32 @@ namespace Music
             this.Close();
         }
         //button 2'e basıldığı zaman bu pencereyi tamamen kapatıp mzüik bulma yerini acıyorum.
+        private void button3_Click(object sender, EventArgs e)
+        {
+            mood_secimi frm = new mood_secimi();
+            frm.Show();
+            this.Close();
+        }
+        /*Button 3'e basınca mood secime geri dönüyorum.*/
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DialogResult sonuc = MessageBox.Show("Kullanıcı Değiştirmek İstediğinize Emin misiniz?", "Kullanıcı Değiştir", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (sonuc==DialogResult.Yes)
+            {
+                Giris frm = new Giris();
+                frm.Show();
+                this.Close();
+            }
+        }
+        /*Button 4'e basınca Kullanıcı değiştirmek için giriş ekranına geri dönüyorum.*/
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DialogResult sonuc = MessageBox.Show("Uygulamayı Kapatmak İstediğinize Emin misiniz?", "Uygulamayı Kapat", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (sonuc == DialogResult.Yes)
+            {
+                System.Windows.Forms.Application.Exit();
+            }
+        }
+        /*Button5'e tıklayınca application'ı direk kapatıyorum.*/
     }
 }
