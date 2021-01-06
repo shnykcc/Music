@@ -23,33 +23,9 @@ namespace Music
         private void Form2_Load(object sender, EventArgs e)
         {
             label1.Text = "Tekrar Merhaba " + Giris.isim + "!";
-            Console.WriteLine("Secilen mood= " + mood_secimi.mood + "\nSecilen Tür=" + tur_secimi.tur);
-            bgln.Open();
-            SqlCommand okur = new SqlCommand("select * from music", bgln);
-            SqlDataReader oku = okur.ExecuteReader();
-            while (oku.Read())
-            {
-                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur)
-                {
-                    Console.WriteLine("Şarkı isimi= " + oku["Name"].ToString().Trim() + "\nArtist İsmi= " + oku["Artist"].ToString().Trim() + "\nLokasyonu= " + oku["yol"].ToString().Trim());
-                    listView1.Items.Add(new ListViewItem(new[] { oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim() }));
-                    //listView1.Items.Add(oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim());
-                }
-                else
-                {
-                    label2.Text = "Daha Fazla Müzik Ekleyin";
-                    listView1.Items.Add(new ListViewItem(new[] { "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı" }));
-                }
-
-            }
-            for (int i = 0; i < listView1.Columns.Count; i++)
-            {
-                listView1.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
-            }
-            
-            bgln.Close();
+            sarkiListYenile();
         }
-        //form yüklendiği zaman form1'de tanımladığım isim sayesinde bir karşılama yazısı bastırıyorum ve database ulaşarak tüm kayıtları okuyorum.
+        //form yüklendiği zaman form1'de tanımladığım isim sayesinde bir karşılama yazısı bastırıyorum ve sarkiListYenile fonksiyonu çağırıyorum.
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -76,7 +52,7 @@ namespace Music
         private void button4_Click(object sender, EventArgs e)
         {
             DialogResult sonuc = MessageBox.Show("Kullanıcı Değiştirmek İstediğinize Emin misiniz?", "Kullanıcı Değiştir", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (sonuc==DialogResult.Yes)
+            if (sonuc == DialogResult.Yes)
             {
                 Giris frm = new Giris();
                 frm.Show();
@@ -93,5 +69,51 @@ namespace Music
             }
         }
         /*Button5'e tıklayınca application'ı direk kapatıyorum.*/
+        private void button6_Click(object sender, EventArgs e)
+        {
+            sarkiListYenile();
+        }
+        public void sarkiListYenile()
+        {
+            listView1.Items.Clear();
+            //İlk başta eğer item varsa üst üste binmemesi için 0'lıyorum.
+            int okumaKontrolcu = 0;
+            bgln.Open();
+            SqlCommand okur = new SqlCommand("select * from music", bgln);
+            SqlDataReader oku = okur.ExecuteReader();
+            while (oku.Read())
+            {
+                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur && oku["Mood Name"].ToString().Trim() != null)
+                {
+                    Console.WriteLine("Şarkı isimi= " + oku["Name"].ToString().Trim() + "\nArtist İsmi= " + oku["Artist"].ToString().Trim() + "\nLokasyonu= " + oku["yol"].ToString().Trim());
+                    listView1.Items.Add(new ListViewItem(new[] { oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim() }));
+                    //listView1.Items.Add(oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim());
+                }
+                else
+                {
+                    label2.Text = "Daha Fazla Müzik Ekleyin";
+                    listView1.Items.Add(new ListViewItem(new[] { "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı" }));
+                }
+                okumaKontrolcu++;
+            }
+            if (okumaKontrolcu == 0)
+            {
+                label2.Text = "Daha Fazla Müzik Ekleyin";
+                listView1.Items.Add(new ListViewItem(new[] { "EKLENEN HERHANGİ BİR ŞARKI YOK.", "EKLENEN HERHANGİ BİR ŞARKI YOK.", "EKLENEN HERHANGİ BİR ŞARKI YOK." }));
+            }
+            for (int i = 0; i < listView1.Columns.Count; i++)
+            {
+                listView1.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
+
+            bgln.Close();
+        }
+        //fonskiyon cağrıldığı zaman database ulaşarak tüm kayıtları okuyorum. Eğer kayıt yoksa ceşitli yazılarla row ekliyorum.
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string adres = "https://www.youtube.com/results?search_query=" + listView1.SelectedItems[0].Text;
+            System.Diagnostics.Process.Start(adres);
+        }
     }
 }

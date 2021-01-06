@@ -40,13 +40,16 @@ namespace Music
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(254, 9);
+            this.label1.Location = new System.Drawing.Point(228, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 31);
             this.label1.TabIndex = 0;
@@ -80,8 +83,10 @@ namespace Music
             this.Names,
             this.ArtistName,
             this.Locations});
+            this.listView1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 207);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(612, 225);
             this.listView1.TabIndex = 4;
@@ -147,11 +152,49 @@ namespace Music
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button6.Location = new System.Drawing.Point(130, 458);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(112, 89);
+            this.button6.TabIndex = 9;
+            this.button6.Text = "Şarkıları Yenile";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button7.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button7.Location = new System.Drawing.Point(248, 458);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(112, 89);
+            this.button7.TabIndex = 10;
+            this.button7.Text = "Youtube\'da Ara";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button8.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button8.Location = new System.Drawing.Point(363, 458);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(112, 89);
+            this.button8.TabIndex = 11;
+            this.button8.Text = "Spotify\'da Ara";
+            this.button8.UseVisualStyleBackColor = false;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(650, 559);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -173,7 +216,6 @@ namespace Music
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader Names;
         private System.Windows.Forms.ColumnHeader ArtistName;
         private System.Windows.Forms.ColumnHeader Locations;
@@ -181,5 +223,9 @@ namespace Music
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.ListView listView1;
     }
 }

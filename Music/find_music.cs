@@ -39,7 +39,7 @@ namespace Music
             }
             bgln.Close();
             /*Sayfa yüklendiğinde dosya yolu adında bir değişken oluşturdum ve baglantıyı acarak Dosya yolunu sqlden cektim ve baglantıyı kapadım.*/
-            if (dosya_yolu == "Bos")
+            if (dosya_yolu == "Bos" || dosya_yolu == "")
             {
                 FolderBrowserDialog fbd = new FolderBrowserDialog();
                 fbd.ShowDialog();
@@ -190,7 +190,7 @@ namespace Music
                                 dosyalar.Add(stringReplace(kopyalanacak[i]));
                             }
                         }
-                        if (dosyalar.Count==0)
+                        if (dosyalar.Count == 0)
                         {
                             bgln.Close();
                             bgln.Open();

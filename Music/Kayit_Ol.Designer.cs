@@ -216,9 +216,9 @@ namespace Music
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(194, 141);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 20);
+            this.label7.Size = new System.Drawing.Size(88, 20);
             this.label7.TabIndex = 16;
-            this.label7.Text = "120 Sn";
+            this.label7.Text = "120 Saniye";
             this.label7.Visible = false;
             // 
             // button4
