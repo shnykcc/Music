@@ -47,7 +47,7 @@ namespace Music
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(148, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "shnykc@hotmail.com";
+            this.textBox1.Text = "admin";
             this.textBox1.Visible = false;
             // 
             // label1
@@ -79,7 +79,7 @@ namespace Music
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(148, 20);
             this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "12345678";
+            this.textBox2.Text = "123456789";
             this.textBox2.Visible = false;
             // 
             // label3
@@ -149,6 +149,7 @@ namespace Music
             this.checkBox1.Text = "Şifreyi Göster";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.Visible = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Giris
             // 

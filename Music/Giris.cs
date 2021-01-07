@@ -40,6 +40,7 @@ namespace Music
         }
         public static string isim = "";
         public static string kaydeden = "";
+        public static string kaydeden2 = "";
         //daha sonra kullanmak için 2 adet public ve static değişken oluşturuyorun.
         private void button3_Click(object sender, EventArgs e)
         {
@@ -59,7 +60,7 @@ namespace Music
                 {
                     if (denetSifre == textBox2.Text)
                     {
-
+                        kaydeden2 = textBox1.Text;
                         mood_secimi frm3 = new mood_secimi();
                         frm3.Show();
                         this.Hide();

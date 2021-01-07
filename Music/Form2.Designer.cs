@@ -92,6 +92,7 @@ namespace Music
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // Names
             // 
@@ -179,12 +180,13 @@ namespace Music
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button8.Enabled = false;
             this.button8.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.button8.Location = new System.Drawing.Point(363, 458);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(112, 89);
             this.button8.TabIndex = 11;
-            this.button8.Text = "Spotify\'da Ara";
+            this.button8.Text = "Bilgisayarda Cal";
             this.button8.UseVisualStyleBackColor = false;
             // 
             // Form2

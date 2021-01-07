@@ -22,6 +22,9 @@ namespace Music
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            button7.BackColor = Color.Gray;
+            button7.ForeColor = Color.Red;
+            button7.Enabled = false;
             label1.Text = "Tekrar Merhaba " + Giris.isim + "!";
             sarkiListYenile();
         }
@@ -77,26 +80,26 @@ namespace Music
         {
             listView1.Items.Clear();
             //İlk başta eğer item varsa üst üste binmemesi için 0'lıyorum.
-            int okumaKontrolcu = 0;
+            int okumaKontrolcu = 0, eklenmisKontrol = 0;
             bgln.Open();
             SqlCommand okur = new SqlCommand("select * from music", bgln);
             SqlDataReader oku = okur.ExecuteReader();
             while (oku.Read())
             {
-                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur && oku["Mood Name"].ToString().Trim() != null)
+                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur && oku["Mood Name"].ToString().Trim() != null && oku["kaydeden"].ToString().Trim() == Giris.kaydeden2.ToString())
                 {
-                    Console.WriteLine("Şarkı isimi= " + oku["Name"].ToString().Trim() + "\nArtist İsmi= " + oku["Artist"].ToString().Trim() + "\nLokasyonu= " + oku["yol"].ToString().Trim());
                     listView1.Items.Add(new ListViewItem(new[] { oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim() }));
-                    //listView1.Items.Add(oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim());
+                    eklenmisKontrol++;
+                    label2.Text = "Moodunuza Ve Sectiğiniz Türe Uygun Müzikler";
                 }
-                else
+                else if (eklenmisKontrol == 0)
                 {
-                    label2.Text = "Daha Fazla Müzik Ekleyin";
+                    label2.Text = "Seciminize uygun şarkı yok";
                     listView1.Items.Add(new ListViewItem(new[] { "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı" }));
                 }
                 okumaKontrolcu++;
             }
-            if (okumaKontrolcu == 0)
+            if (okumaKontrolcu == 0 && eklenmisKontrol == 0)
             {
                 label2.Text = "Daha Fazla Müzik Ekleyin";
                 listView1.Items.Add(new ListViewItem(new[] { "EKLENEN HERHANGİ BİR ŞARKI YOK.", "EKLENEN HERHANGİ BİR ŞARKI YOK.", "EKLENEN HERHANGİ BİR ŞARKI YOK." }));
@@ -114,6 +117,22 @@ namespace Music
         {
             string adres = "https://www.youtube.com/results?search_query=" + listView1.SelectedItems[0].Text;
             System.Diagnostics.Process.Start(adres);
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count != 0)
+            {
+                button7.Enabled = true;
+                button7.BackColor = Color.Purple;
+                button7.ForeColor = Color.Black;
+            }
+            else
+            {
+                button7.BackColor = Color.Gray;
+                button7.ForeColor = Color.Red;
+                button7.Enabled = false;
+            }
         }
     }
 }
