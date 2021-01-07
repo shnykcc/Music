@@ -280,6 +280,7 @@ namespace Music
             this.Controls.Add(this.textBox1);
             this.Name = "Kayit_Ol";
             this.Text = "Kayit_Ol";
+            this.Load += new System.EventHandler(this.Kayit_Ol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

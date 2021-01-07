@@ -86,18 +86,18 @@ namespace Music
             SqlDataReader oku = okur.ExecuteReader();
             while (oku.Read())
             {
-                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur && oku["Mood Name"].ToString().Trim() != null && oku["kaydeden"].ToString().Trim() == Giris.kaydeden2.ToString())
+                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood.Trim() && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur.Trim() && oku["Mood Name"].ToString().Trim() != null && oku["kaydeden"].ToString().Trim() == Giris.kaydeden2.ToString().Trim())
                 {
                     listView1.Items.Add(new ListViewItem(new[] { oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim() }));
                     eklenmisKontrol++;
                     label2.Text = "Moodunuza Ve Sectiğiniz Türe Uygun Müzikler";
                 }
-                else if (eklenmisKontrol == 0)
-                {
-                    label2.Text = "Seciminize uygun şarkı yok";
-                    listView1.Items.Add(new ListViewItem(new[] { "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı" }));
-                }
                 okumaKontrolcu++;
+            }
+            if (eklenmisKontrol == 0)
+            {
+                label2.Text = "Seciminize uygun şarkı yok";
+                listView1.Items.Add(new ListViewItem(new[] { "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı", "Secilen Kriterlere uygun şarkı bulunamadı" }));
             }
             if (okumaKontrolcu == 0 && eklenmisKontrol == 0)
             {
@@ -133,6 +133,14 @@ namespace Music
                 button7.ForeColor = Color.Red;
                 button7.Enabled = false;
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            bgln.Open();
+            SqlCommand dosyaYoluDegis = new SqlCommand("UPDATE dosyagoster SET Dosya_Yolu='Bos' WHERE ıd=1", bgln);
+            dosyaYoluDegis.ExecuteNonQuery();
+            bgln.Close();
         }
     }
 }

@@ -122,6 +122,11 @@ namespace Music
             return 1;
         }
 
+        private void Kayit_Ol_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             mailGonder();
@@ -146,6 +151,10 @@ namespace Music
                     bgln.Close();
                     this.Close();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen Doğru Kodu Giriniz", "Yanlış Kod", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

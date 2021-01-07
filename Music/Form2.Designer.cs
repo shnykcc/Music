@@ -43,6 +43,7 @@ namespace Music
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -189,11 +190,23 @@ namespace Music
             this.button8.Text = "Bilgisayarda Cal";
             this.button8.UseVisualStyleBackColor = false;
             // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Aqua;
+            this.button9.Location = new System.Drawing.Point(492, 178);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(132, 23);
+            this.button9.TabIndex = 12;
+            this.button9.Text = "Dosya Konumunu Sıfırla";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(650, 559);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -229,5 +242,6 @@ namespace Music
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button button9;
     }
 }

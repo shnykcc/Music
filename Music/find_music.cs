@@ -165,10 +165,13 @@ namespace Music
                 Console.WriteLine("Dosya sayısı= " + dosyalar.Count);
                 for (int j = 0; j < sqlyollarim.Length; j++)
                 {
-                    if (dosyalar[kontrolSayac] == sqlyollarim[j])
+                    if (dosyalar.Count >= kontrolSayac)
                     {
-                        kontrolSayac++;
-                        j = 0;
+                        if (kontrolSayac != dosyalar.Count && dosyalar[kontrolSayac] == sqlyollarim[j])
+                        {
+                            kontrolSayac++;
+                            j = 0;
+                        }
                     }
                     if (kontrolSayac >= dosyalar.Count)
                     {
