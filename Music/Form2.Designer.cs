@@ -85,6 +85,7 @@ namespace Music
             this.ArtistName,
             this.Locations});
             this.listView1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 207);
             this.listView1.MultiSelect = false;
@@ -181,7 +182,6 @@ namespace Music
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button8.Enabled = false;
             this.button8.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.button8.Location = new System.Drawing.Point(363, 458);
             this.button8.Name = "button8";
@@ -189,6 +189,7 @@ namespace Music
             this.button8.TabIndex = 11;
             this.button8.Text = "Bilgisayarda Cal";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 

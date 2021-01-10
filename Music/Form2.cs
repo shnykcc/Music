@@ -19,7 +19,7 @@ namespace Music
         {
             InitializeComponent();
         }
-
+        public static string musicUrl;
         private void Form2_Load(object sender, EventArgs e)
         {
             button7.BackColor = Color.Gray;
@@ -141,6 +141,13 @@ namespace Music
             SqlCommand dosyaYoluDegis = new SqlCommand("UPDATE dosyagoster SET Dosya_Yolu='Bos' WHERE ıd=1", bgln);
             dosyaYoluDegis.ExecuteNonQuery();
             bgln.Close();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            musicUrl = listView1.SelectedItems[0].SubItems[2].ToString().Substring(18, listView1.SelectedItems[0].SubItems[2].ToString().Length - 19);
+            MusicPlayer frm = new MusicPlayer();
+            frm.Show();
         }
     }
 }

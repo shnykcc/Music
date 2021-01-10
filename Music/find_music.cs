@@ -80,10 +80,35 @@ namespace Music
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            string moodKayit = "";
+            if (comboBox1.SelectedIndex==0)
+            {
+                moodKayit = "Sad";
+            }
+            else if (comboBox1.SelectedIndex==1)
+            {
+                moodKayit = "Work";
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                moodKayit = "Shower";
+            }
+            else if (comboBox1.SelectedIndex == 3)
+            {
+                moodKayit = "Happy";
+            }
+            else if (comboBox1.SelectedIndex == 4)
+            {
+                moodKayit = "Spor";
+            }
+            else if (comboBox1.SelectedIndex == 5)
+            {
+                moodKayit = "Meditation";
+            }
             if (textBox1.Text != null && textBox2.Text != null && comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && girilecekAdres != null)
             {
                 bgln.Open();
-                SqlCommand musicGir = new SqlCommand("insert into music (Name,[Mood Name],[Tur Adi],Artist,kaydeden,yol) values('" + textBox1.Text + "','" + comboBox1.SelectedItem + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "','" + girilecekAdres + "')", bgln);
+                SqlCommand musicGir = new SqlCommand("insert into music (Name,[Mood Name],[Tur Adi],Artist,kaydeden,yol) values('" + textBox1.Text + "','" + moodKayit + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "','" + girilecekAdres + "')", bgln);
                 musicGir.ExecuteNonQuery();
                 bgln.Close();
             }

@@ -191,7 +191,6 @@ namespace Music
             this.Controls.Add(this.label1);
             this.Name = "music_save";
             this.Text = "music_save";
-            this.Load += new System.EventHandler(this.music_save_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

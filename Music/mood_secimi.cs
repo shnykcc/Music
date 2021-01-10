@@ -25,19 +25,19 @@ namespace Music
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mood = "Hüzünlü";
+            mood = "Sad";
             gecis();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mood = "Mutlu";
+            mood = "Happy";
             gecis();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            mood = "Çalışma";
+            mood = "Work";
             gecis();
         }
 
@@ -49,13 +49,13 @@ namespace Music
 
         private void button6_Click(object sender, EventArgs e)
         {
-            mood = "Meditasyon";
+            mood = "Meditation";
             gecis();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            mood = "Duş";
+            mood = "Shower";
             gecis();
         }
         //Yukarıdaki fonksiyonlar sayesinde uygulamanın içerisine girdiğim zaman hangi tür müziğin ön plana cıkacağını ayarlama parametrelerini alıyorum. gecis adlı fonksiyonu da her birinde kullanıyorum.

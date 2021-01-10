@@ -20,19 +20,43 @@ namespace Music
         //Database'e bağlanmak için bağlantısı oluşturuyorum.
         private void button1_Click(object sender, EventArgs e)
         {
+            string moodKayit = "";
+            if (comboBox1.SelectedIndex == 0)
+            {
+                moodKayit = "Sad";
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                moodKayit = "Work";
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                moodKayit = "Shower";
+            }
+            else if (comboBox1.SelectedIndex == 3)
+            {
+                moodKayit = "Happy";
+            }
+            else if (comboBox1.SelectedIndex == 4)
+            {
+                moodKayit = "Spor";
+            }
+            else if (comboBox1.SelectedIndex == 5)
+            {
+                moodKayit = "Meditation";
+            }
+            //İngilizce kayıt etmek için kullanıcının secimine göre secimi ingilizceye ceviriyorum.
             if (textBox1.Text != null && textBox2.Text != null && comboBox1.SelectedItem != null && comboBox2.SelectedItem != null)
             {
                 //Eğer tüm alnlar doluysa...
                 bgln.Open();
-                SqlCommand music_save = new SqlCommand("insert into music ([Name],[Mood Name],[Tur Adi],[Artist],[kaydeden],yol) values ('" + textBox1.Text + "','" + comboBox1.SelectedItem + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "','Kullanıcı kayıt etti')", bgln);
+                SqlCommand music_save = new SqlCommand("insert into music ([Name],[Mood Name],[Tur Adi],[Artist],[kaydeden],yol) values ('" + textBox1.Text + "','" + moodKayit + "','" + comboBox2.SelectedItem + "','" + textBox2.Text + "','" + Giris.kaydeden + "','Kullanıcı kayıt etti')", bgln);
                 music_save.ExecuteNonQuery();
                 bgln.Close();
                 label6.Visible = true;
                 label6.Text = textBox1.Text + " Şarkısı kayıt edildi.";
                 textBox1.Text = "";
                 textBox2.Text = "";
-                comboBox1.SelectedItem = "";
-                comboBox2.SelectedItem = "";
                 //bağlantıyı acıyorum alanlardaki degerleri database'e ekletiyorum ve doğruluğunu kontrol ediyorum. Sorunsuz bir şekilde eklendiyse baglantıyı kapatıyorum. Alanları sıfırlıyorum ve label6'ya başarılı olduğuna dair veri giriyorum.
             }
             else
@@ -49,9 +73,5 @@ namespace Music
             this.Close();
         }
 
-        private void music_save_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
