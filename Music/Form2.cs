@@ -145,9 +145,39 @@ namespace Music
 
         private void button8_Click(object sender, EventArgs e)
         {
+            int okumaKontrolcu = 0, eklenmisKontrol = 0;
+            bgln.Open();
+            SqlCommand okur = new SqlCommand("select * from music", bgln);
+            SqlDataReader oku = okur.ExecuteReader();
+            while (oku.Read())
+            {
+                if (oku["kaydeden"].ToString().Trim() == Giris.kaydeden2.ToString().Trim())
+                {
+                    listView1.Items.Add(new ListViewItem(new[] { oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim() }));
+                    eklenmisKontrol++;
+                    label2.Text = "Tüm Müzikler";
+                }
+                okumaKontrolcu++;
+            }
+            if (okumaKontrolcu == 0 && eklenmisKontrol == 0)
+            {
+                label2.Text = "Daha Fazla Müzik Ekleyin";
+                listView1.Items.Add(new ListViewItem(new[] { "EKLENEN HERHANGİ BİR ŞARKI YOK.", "EKLENEN HERHANGİ BİR ŞARKI YOK.", "EKLENEN HERHANGİ BİR ŞARKI YOK." }));
+            }
+            for (int i = 0; i < listView1.Columns.Count; i++)
+            {
+                listView1.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
+
+            bgln.Close();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
             musicUrl = listView1.SelectedItems[0].SubItems[2].ToString().Substring(18, listView1.SelectedItems[0].SubItems[2].ToString().Length - 19);
-            MusicPlayer frm = new MusicPlayer();
-            frm.Show();
+            WMPLib.WindowsMediaPlayer muzikcalar = new WMPLib.WindowsMediaPlayer();
+            muzikcalar.URL = musicUrl;
+            muzikcalar.controls.play();
         }
     }
 }
