@@ -15,16 +15,28 @@ namespace Music
     {
         SqlConnection bgln = new SqlConnection("Data Source=.;Initial Catalog=MusicProject;Integrated Security=True");
         //sql'e baglanmak için baglantı oluşturuyorum.
+        WMPLib.WindowsMediaPlayer muzikcalar = new WMPLib.WindowsMediaPlayer();
         public Form2()
         {
             InitializeComponent();
         }
         public static string musicUrl;
+        int demene = 0;
         private void Form2_Load(object sender, EventArgs e)
         {
             button7.BackColor = Color.Gray;
             button7.ForeColor = Color.Red;
             button7.Enabled = false;
+            button8.Enabled = true;
+            button8.BackColor = Color.Gray;
+            button8.ForeColor = Color.Red;
+            button8.Enabled = false;
+            button10.BackColor = Color.Gray;
+            button10.ForeColor = Color.Red;
+            button10.Enabled = false;
+            button11.BackColor = Color.Gray;
+            button11.ForeColor = Color.Red;
+            button11.Enabled = false;
             label1.Text = "Tekrar Merhaba " + Giris.isim + "!";
             sarkiListYenile();
         }
@@ -86,7 +98,7 @@ namespace Music
             SqlDataReader oku = okur.ExecuteReader();
             while (oku.Read())
             {
-                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood.Trim() && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur.Trim() && oku["Mood Name"].ToString().Trim() != null && oku["kaydeden"].ToString().Trim() == Giris.kaydeden2.ToString().Trim())
+                if (oku["Mood Name"].ToString().Trim() == mood_secimi.mood.Trim() && oku["Tur Adi"].ToString().Trim() == tur_secimi.tur.Trim() && oku["Mood Name"].ToString().Trim() != null && oku["kaydeden"].ToString().Trim() == Giris.kaydeden.ToString().Trim())
                 {
                     listView1.Items.Add(new ListViewItem(new[] { oku["Name"].ToString().Trim(), oku["Artist"].ToString().Trim(), oku["yol"].ToString().Trim() }));
                     eklenmisKontrol++;
@@ -112,27 +124,53 @@ namespace Music
             bgln.Close();
         }
         //fonskiyon cağrıldığı zaman database ulaşarak tüm kayıtları okuyorum. Eğer kayıt yoksa ceşitli yazılarla row ekliyorum.
-
         private void button7_Click(object sender, EventArgs e)
         {
             string adres = "https://www.youtube.com/results?search_query=" + listView1.SelectedItems[0].Text;
             System.Diagnostics.Process.Start(adres);
         }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count != 0)
+            if (listView1.SelectedItems.Count>0)
             {
-                button7.Enabled = true;
-                button7.BackColor = Color.Purple;
-                button7.ForeColor = Color.Black;
+                if (listView1.SelectedItems.Count != 0)
+                {
+                    button7.Enabled = true;
+                    button7.BackColor = Color.Purple;
+                    button7.ForeColor = Color.Black;
+                }
+                else
+                {
+                    button7.BackColor = Color.Gray;
+                    button7.ForeColor = Color.Red;
+                    button7.Enabled = false;
+                }
+                if (listView1.SelectedItems[0].SubItems[2].ToString() != "Kullanıcı kayıt etti")
+                {
+                    button8.Enabled = true;
+                    button8.BackColor = Color.Purple;
+                    button8.ForeColor = Color.Black;
+                    button10.Enabled = true;
+                    button10.BackColor = Color.Purple;
+                    button10.ForeColor = Color.Black;
+                    button11.Enabled = true;
+                    button11.BackColor = Color.Purple;
+                    button11.ForeColor = Color.Black;
+                }
+                else if (listView1.SelectedItems[0].SubItems[2].Text == "Kullanıcı kayıt etti")
+                {
+                    button8.BackColor = Color.Gray;
+                    button8.ForeColor = Color.Red;
+                    button8.Enabled = false;
+                    button10.BackColor = Color.Gray;
+                    button10.ForeColor = Color.Red;
+                    button10.Enabled = false;
+                    button11.BackColor = Color.Gray;
+                    button11.ForeColor = Color.Red;
+                    button11.Enabled = false;
+                }
             }
-            else
-            {
-                button7.BackColor = Color.Gray;
-                button7.ForeColor = Color.Red;
-                button7.Enabled = false;
-            }
+            
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -145,9 +183,22 @@ namespace Music
 
         private void button8_Click(object sender, EventArgs e)
         {
-            musicUrl = listView1.SelectedItems[0].SubItems[2].ToString().Substring(18, listView1.SelectedItems[0].SubItems[2].ToString().Length - 19);
-            MusicPlayer frm = new MusicPlayer();
-            frm.Show();
+            muzikcalar.URL = listView1.SelectedItems[0].SubItems[2].ToString().Substring(18, listView1.SelectedItems[0].SubItems[2].ToString().Length - 19);
+            muzikcalar.controls.play();
+            listView1.SelectedItems.Clear();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            muzikcalar.controls.stop();
+            muzikcalar.controls.play();
+            listView1.SelectedItems.Clear();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            muzikcalar.controls.pause();
+            listView1.SelectedItems.Clear();
         }
     }
 }

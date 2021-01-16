@@ -73,5 +73,9 @@ namespace Music
             this.Close();
         }
 
+        private void music_save_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

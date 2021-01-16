@@ -29,6 +29,7 @@ namespace Music
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -44,6 +45,10 @@ namespace Music
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -185,7 +190,7 @@ namespace Music
             this.button8.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.button8.Location = new System.Drawing.Point(363, 458);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(112, 89);
+            this.button8.Size = new System.Drawing.Size(112, 24);
             this.button8.TabIndex = 11;
             this.button8.Text = "Bilgisayarda Cal";
             this.button8.UseVisualStyleBackColor = false;
@@ -202,11 +207,48 @@ namespace Music
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(549, 64);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(75, 23);
+            this.axWindowsMediaPlayer1.TabIndex = 13;
+            this.axWindowsMediaPlayer1.Visible = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button10.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button10.Location = new System.Drawing.Point(363, 488);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(112, 24);
+            this.button10.TabIndex = 14;
+            this.button10.Text = "Durdur";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.button11.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.button11.Location = new System.Drawing.Point(363, 518);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(112, 24);
+            this.button11.TabIndex = 15;
+            this.button11.Text = "Yeniden Başlat";
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(650, 559);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -222,6 +264,7 @@ namespace Music
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,5 +287,8 @@ namespace Music
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button9;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
     }
 }
