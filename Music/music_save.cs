@@ -21,8 +21,8 @@ namespace Music
         private void button1_Click(object sender, EventArgs e)
         {
             string moodKayit = "";
-            if (comboBox1.SelectedIndex == 0
-            
+            if (comboBox1.SelectedIndex == 0)
+            {
                 moodKayit = "Sad";
             }
             else if (comboBox1.SelectedIndex == 1)
@@ -72,10 +72,7 @@ namespace Music
             frm2.Show();
             this.Close();
         }
+        /*Form2'yi acıyorum ve bu form'u kapatıyorum.*/
 
-        private void music_save_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

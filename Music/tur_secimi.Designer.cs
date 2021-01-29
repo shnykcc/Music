@@ -173,7 +173,6 @@ namespace Music
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "tur_secimi";
             this.Text = "tur_secimi";
-            this.Load += new System.EventHandler(this.tur_secimi_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

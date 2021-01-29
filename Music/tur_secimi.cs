@@ -73,11 +73,7 @@ namespace Music
             gec.Show();
             this.Close();
         }
-
-        private void tur_secimi_Load(object sender, EventArgs e)
-        {
-
-        }
         //bu method sayesinde bu pencereyi tamamen kapatıyorum ve diğer form'u acıyorum.
+       
     }
 }

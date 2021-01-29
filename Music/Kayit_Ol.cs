@@ -17,6 +17,7 @@ namespace Music
         int onay = 0, maildenetim = 0, sure = 120;
         string gonderilecekMailAdresi = "", kisiIsımi = "";
         SqlConnection bgln = new SqlConnection("Data Source = .; Initial Catalog = MusicProject; Integrated Security = True");
+        /*3 adet int 2 adet string değişken oluşturuyorum. Bunları daha sonradan kullanıcam. 1 adet sql'e baglanmak için baglantı nesnesi oluşturuyorum.*/
         public Kayit_Ol()
         {
             InitializeComponent();
@@ -76,6 +77,10 @@ namespace Music
                         button3.Visible = true;
                     }
                 }
+                /*Kayıt ol buttonuna basılınca bool değişken tanımlıyorum adına devam diyorum ve true olarak başlatıyorum. Eğer tüm alanlar doluysa database'i okumaya
+                 başlıyorum. Bunun amacı önceden bu email adresi kullanılmış mı diye sorgulamak. Eğer kullanıldıysa hata basıyorum. Eğer kullanılmadıysa şifreleri
+                kontrol ediyorum. Onlar da gereksinimleri karşılıyorsa tüm alanları gizliyorum ve mail gönderiyorum. Mail'e gelen kodu textBox'a girmesini
+                istiyorum. Ama eğer tüm alanlar dolu değilse Tüm alanları doldurunuz diye hata basıyorum.*/
             }
             else
             {
@@ -87,7 +92,7 @@ namespace Music
             Giris frm1 = new Giris();
             frm1.Show();
             this.Close();
-
+            /*Geri ok tuşuna basılırsa aktif pencereyi kapatıyorum ve Giriş ekranına geri dönüyorum.*/
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -102,6 +107,7 @@ namespace Music
                 textBox4.PasswordChar = '*';
                 textBox5.PasswordChar = '*';
             }
+            /*Eğer şifreyi göstere basarsa tüm karakterleri gösteriyorum. Eğer tik kalkarsa tekrar * ile göstermeyi kapatıyorum.*/
         }
         public int mailGonder()
         {
@@ -120,6 +126,9 @@ namespace Music
             smtp.Send(email);
             timer1.Start();
             return 1;
+            /*MailMessage nesnesi tanımlıyorum. smpt nesnesi tanımlıyorum. Daha sonra bir email ve şifre veriyorum. SMtp portu veriyorum (TR için 587) Host'u veriyorum
+             Bu parametreler bana mail gönderebilmem için gerekli. Sonra random nesnesi belirliyorum. Random nesnesi sayesinde kod göndericem. Daha sonra Kişinin mail
+            adresine gidecek şablonu yazıyorum ve kodu'da yazarak gönderiyorum.*/
         }
 
         private void Kayit_Ol_Load(object sender, EventArgs e)
@@ -132,15 +141,13 @@ namespace Music
             mailGonder();
             sure = 120;
             button4.Visible = false;
+            /*Tekrar mail gönder'e basınca sure değişkenini 120 saniye yapıyor tekrardan ve bir daha gönderiyor. Ardından tekrar gönder buttonunu gizliyor.*/
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             if (onay.ToString() == textBox6.Text)
             {
-                progressBar1.Value += 100;
-                label8.Text = "Kayıt Başarıyla gercekleşti.\nAna menüye aktarılıyor.";
-                System.Threading.Thread.Sleep(1000);
                 if (maildenetim == 1)
                 {
                     bgln.Open();
@@ -156,6 +163,7 @@ namespace Music
             {
                 MessageBox.Show("Lütfen Doğru Kodu Giriniz", "Yanlış Kod", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            /*Kodu gönder'e basınca eğer onay ile textbox'daki aynı ise sql'e kaydediyorum ve girişe yönlendiriyorum.Eğer yanlış ise hata kodu basıyorum.*/
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -167,6 +175,7 @@ namespace Music
                 timer1.Stop();
                 button4.Visible = true;
             }
+            /*Her saniyede zaman 1 eksiltiliyor ve label'a yazdırılıyor. Eğer zaman -1 olursa sayac durduruluyor.*/
         }
     }
 }

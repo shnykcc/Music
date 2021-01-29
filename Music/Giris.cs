@@ -19,8 +19,7 @@ namespace Music
         SqlConnection bgln2 = new SqlConnection("Data Source=.;Initial Catalog=master;Integrated Security=True");
         SqlConnection bgln = new SqlConnection("Data Source=.;Initial Catalog=MusicProject;Integrated Security=True");
 
-
-        //sql'e baglanmak için baglantısı nesnesi oluşturuyorum.
+        //sql'e baglanmak için 2 adet baglantı nesnesi oluşturuyorum.
         public Giris()
         {
             InitializeComponent();
@@ -58,7 +57,7 @@ namespace Music
                 {
                     if (denetSifre == textBox2.Text)
                     {
-                        kaydeden=textBox1.Text;
+                        kaydeden = textBox1.Text;
                         mood_secimi frm3 = new mood_secimi();
                         frm3.Show();
                         this.Hide();
@@ -143,6 +142,9 @@ namespace Music
                 bgln.Close();
                 bgln2.Close();
             }
+            /*İlk giriş ekranı acıldığı zaman sql'e baglanıyorum. Ana database'de önceden bu programın oluşturduğu bir database var mı diye kontrol ediyorum. Eğer
+             oluşturmadıysa bir adet database oluşturuyorum. Bunun için önceden oluşturdugum sqlOlusturma adlı dosyayı okutuyorum ve onu calıştırıyorum. Daha sonra 1 
+            tane admin kullanıcısı oluşturuyorum ve dosya yolunu Bos olarak oluşturuyorum ve tüm baglantıları kapatıyorum.*/
         }
     }
 }

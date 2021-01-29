@@ -81,11 +81,11 @@ namespace Music
         private void button1_Click(object sender, EventArgs e)
         {
             string moodKayit = "";
-            if (comboBox1.SelectedIndex==0)
+            if (comboBox1.SelectedIndex == 0)
             {
                 moodKayit = "Sad";
             }
-            else if (comboBox1.SelectedIndex==1)
+            else if (comboBox1.SelectedIndex == 1)
             {
                 moodKayit = "Work";
             }

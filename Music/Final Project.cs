@@ -14,14 +14,13 @@ namespace Music
     public partial class Form2 : Form
     {
         SqlConnection bgln = new SqlConnection("Data Source=.;Initial Catalog=MusicProject;Integrated Security=True");
-        //sql'e baglanmak için baglantı oluşturuyorum.
         WMPLib.WindowsMediaPlayer muzikcalar = new WMPLib.WindowsMediaPlayer();
+        //sql'e baglanmak için baglantı oluşturuyorum. Aynı zaman da Windows media player'ı da bir nesne olarak ekliyorum ki onda da müzik caldırabileyim.
         public Form2()
         {
             InitializeComponent();
         }
         public static string musicUrl;
-        int demene = 0;
         private void Form2_Load(object sender, EventArgs e)
         {
             button7.BackColor = Color.Gray;
@@ -40,7 +39,7 @@ namespace Music
             label1.Text = "Tekrar Merhaba " + Giris.isim + "!";
             sarkiListYenile();
         }
-        //form yüklendiği zaman form1'de tanımladığım isim sayesinde bir karşılama yazısı bastırıyorum ve sarkiListYenile fonksiyonu çağırıyorum.
+        //form yüklendiği zaman form1'de tanımladığım isim sayesinde bir karşılama yazısı bastırıyorum ve sarkiListYenile fonksiyonu çağırıyorum. Bununla beraber Bir de buttonların enabled'larını ayarlıyorum ve renklerini düzenliyorum.
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -55,8 +54,8 @@ namespace Music
             find_music fnd = new find_music();
             fnd.Show();
             this.Close();
+            /*Button2'ye basıldığı zaman find_music adlı yeri acıyorum ve burayı kapatıyorum.*/
         }
-        //button 2'e basıldığı zaman bu pencereyi tamamen kapatıp mzüik bulma yerini acıyorum.
         private void button3_Click(object sender, EventArgs e)
         {
             mood_secimi frm = new mood_secimi();
@@ -106,6 +105,8 @@ namespace Music
                 }
                 okumaKontrolcu++;
             }
+            /*Dataları okurken eğer secilen mood ile okunan mood aynıysa ve secilen tür ile okunan tür aynıysa ve kaydeden ile giriş yapan aynı kişiyse bunu listview
+             'a ekliyorum ve label2'nin text'ini değiştiriyorum. Aynı zamanda eklenmişkontrol'u arttırıyorum.*/
             if (eklenmisKontrol == 0)
             {
                 label2.Text = "Seciminize uygun şarkı yok";
@@ -120,18 +121,19 @@ namespace Music
             {
                 listView1.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.ColumnContent);
             }
-
             bgln.Close();
+            /*Eğer eklenmiş herhangi bir yok ise seciminize uygun bir şarkı yok diyorum. Eğer hicbir müzik eklenmediyse daha fazla müzik ekleyin diyorum.*/
         }
-        //fonskiyon cağrıldığı zaman database ulaşarak tüm kayıtları okuyorum. Eğer kayıt yoksa ceşitli yazılarla row ekliyorum.
         private void button7_Click(object sender, EventArgs e)
         {
             string adres = "https://www.youtube.com/results?search_query=" + listView1.SelectedItems[0].Text;
             System.Diagnostics.Process.Start(adres);
+            /*Youtube'da aramak için adres değişkeni aratıyorum ve browser'da bu değişkenle adrese gidiyorum.*/
         }
+
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count>0)
+            if (listView1.SelectedItems.Count > 0)
             {
                 if (listView1.SelectedItems.Count != 0)
                 {
@@ -145,7 +147,7 @@ namespace Music
                     button7.ForeColor = Color.Red;
                     button7.Enabled = false;
                 }
-                if (listView1.SelectedItems[0].SubItems[2].ToString() != "Kullanıcı kayıt etti")
+                if (listView1.SelectedItems[0].SubItems[2].Text.ToString() != "Kullanici kayit etti")
                 {
                     button8.Enabled = true;
                     button8.BackColor = Color.Purple;
@@ -157,7 +159,7 @@ namespace Music
                     button11.BackColor = Color.Purple;
                     button11.ForeColor = Color.Black;
                 }
-                else if (listView1.SelectedItems[0].SubItems[2].Text == "Kullanıcı kayıt etti")
+                else if (listView1.SelectedItems[0].SubItems[2].Text == "Kullanici kayit etti")
                 {
                     button8.BackColor = Color.Gray;
                     button8.ForeColor = Color.Red;
@@ -170,7 +172,7 @@ namespace Music
                     button11.Enabled = false;
                 }
             }
-            
+            /*Listview'da secim değişimi yapıldığında parametrelere göre buttonların renklerini ve erişilebilirliklerini değiştiriyorum. */
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -179,13 +181,16 @@ namespace Music
             SqlCommand dosyaYoluDegis = new SqlCommand("UPDATE dosyagoster SET Dosya_Yolu='Bos' WHERE ıd=1", bgln);
             dosyaYoluDegis.ExecuteNonQuery();
             bgln.Close();
+            /*Eğer dosya yolu sıfırlanmak isterse ilgili sql alanına ulaşarak burayı ilk haline sıfırlıyorum.*/
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            muzikcalar.URL = listView1.SelectedItems[0].SubItems[2].ToString().Substring(18, listView1.SelectedItems[0].SubItems[2].ToString().Length - 19);
+
+            muzikcalar.URL = stringReplace(listView1.SelectedItems[0].SubItems[2].ToString().Substring(18, listView1.SelectedItems[0].SubItems[2].ToString().Length - 19));
             muzikcalar.controls.play();
             listView1.SelectedItems.Clear();
+            /*Bilgisayarda calınmak isterse stringreplace ile _ leri boşluk yapıyorum ve url olarak alıyorum ve musicplayer'da çalıyorum.*/
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -193,12 +198,20 @@ namespace Music
             muzikcalar.controls.stop();
             muzikcalar.controls.play();
             listView1.SelectedItems.Clear();
+            /*Yeniden başlata tıklanırsa durdurup yeniden başlatıyorum.*/
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             muzikcalar.controls.pause();
             listView1.SelectedItems.Clear();
+            /*Durdur'a basılırsa durduruyorum.*/
+        }
+        public string stringReplace(string text)
+        {
+            text = text.Replace("_", " ");
+            return text;
+            /*_ leri boşluk olarak düzeltiyorum.*/
         }
     }
 }

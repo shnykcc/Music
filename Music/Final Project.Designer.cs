@@ -152,7 +152,7 @@ namespace Music
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.Red;
-            this.button5.Location = new System.Drawing.Point(526, 458);
+            this.button5.Location = new System.Drawing.Point(635, 458);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(112, 89);
             this.button5.TabIndex = 8;
@@ -164,7 +164,7 @@ namespace Music
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.button6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button6.Location = new System.Drawing.Point(130, 458);
+            this.button6.Location = new System.Drawing.Point(154, 458);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(112, 89);
             this.button6.TabIndex = 9;
@@ -176,7 +176,7 @@ namespace Music
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.button7.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button7.Location = new System.Drawing.Point(248, 458);
+            this.button7.Location = new System.Drawing.Point(294, 458);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(112, 89);
             this.button7.TabIndex = 10;
@@ -188,7 +188,7 @@ namespace Music
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.button8.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button8.Location = new System.Drawing.Point(363, 458);
+            this.button8.Location = new System.Drawing.Point(455, 458);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(112, 24);
             this.button8.TabIndex = 11;
@@ -210,10 +210,10 @@ namespace Music
             // axWindowsMediaPlayer1
             // 
             this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(549, 64);
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(504, 19);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(75, 23);
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(243, 153);
             this.axWindowsMediaPlayer1.TabIndex = 13;
             this.axWindowsMediaPlayer1.Visible = false;
             // 
@@ -221,7 +221,7 @@ namespace Music
             // 
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.button10.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button10.Location = new System.Drawing.Point(363, 488);
+            this.button10.Location = new System.Drawing.Point(455, 488);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(112, 24);
             this.button10.TabIndex = 14;
@@ -233,7 +233,7 @@ namespace Music
             // 
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.button11.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button11.Location = new System.Drawing.Point(363, 518);
+            this.button11.Location = new System.Drawing.Point(455, 518);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(112, 24);
             this.button11.TabIndex = 15;
@@ -245,7 +245,7 @@ namespace Music
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 559);
+            this.ClientSize = new System.Drawing.Size(759, 559);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.axWindowsMediaPlayer1);
