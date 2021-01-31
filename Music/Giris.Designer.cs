@@ -29,6 +29,7 @@ namespace Music
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Giris));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@ namespace Music
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -95,7 +97,7 @@ namespace Music
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Chartreuse;
-            this.button1.Location = new System.Drawing.Point(36, 286);
+            this.button1.Location = new System.Drawing.Point(36, 271);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 68);
             this.button1.TabIndex = 5;
@@ -106,7 +108,7 @@ namespace Music
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button2.Location = new System.Drawing.Point(117, 286);
+            this.button2.Location = new System.Drawing.Point(117, 271);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 68);
             this.button2.TabIndex = 6;
@@ -151,12 +153,25 @@ namespace Music
             this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Orange;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(36, 345);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(156, 34);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "Şifremi Unuttum";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Giris
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(354, 503);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -167,8 +182,9 @@ namespace Music
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Giris";
-            this.Text = "Form1";
+            this.Text = "Hoşgeldiniz!";
             this.Load += new System.EventHandler(this.Giris_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -187,6 +203,7 @@ namespace Music
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button5;
     }
 }
 

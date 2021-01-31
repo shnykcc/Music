@@ -146,5 +146,12 @@ namespace Music
              oluşturmadıysa bir adet database oluşturuyorum. Bunun için önceden oluşturdugum sqlOlusturma adlı dosyayı okutuyorum ve onu calıştırıyorum. Daha sonra 1 
             tane admin kullanıcısı oluşturuyorum ve dosya yolunu Bos olarak oluşturuyorum ve tüm baglantıları kapatıyorum.*/
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            forgot_password forgotPassword = new forgot_password();
+            forgotPassword.Show();
+            this.Hide();
+        }
     }
 }

@@ -53,6 +53,12 @@
     <Compile Include="find_music.Designer.cs">
       <DependentUpon>find_music.cs</DependentUpon>
     </Compile>
+    <Compile Include="forgot_password.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forgot_password.Designer.cs">
+      <DependentUpon>forgot_password.cs</DependentUpon>
+    </Compile>
     <Compile Include="Giris.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </Compile>
     <EmbeddedResource Include="find_music.resx">
       <DependentUpon>find_music.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forgot_password.resx">
+      <DependentUpon>forgot_password.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Giris.resx">
       <DependentUpon>Giris.cs</DependentUpon>

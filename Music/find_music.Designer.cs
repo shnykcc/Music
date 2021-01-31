@@ -29,6 +29,7 @@ namespace Music
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(find_music));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -202,8 +203,9 @@ namespace Music
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "find_music";
-            this.Text = "find_music";
+            this.Text = "Müzik Bul";
             this.Load += new System.EventHandler(this.find_music_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -29,6 +29,7 @@ namespace Music
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(tur_secimi));
             this.label2 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -171,8 +172,9 @@ namespace Music
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "tur_secimi";
-            this.Text = "tur_secimi";
+            this.Text = "Tür Secimi";
             this.ResumeLayout(false);
             this.PerformLayout();
 
