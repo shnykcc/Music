@@ -90,7 +90,8 @@ namespace Music
                 else
                 {
                     bgln.Open();
-                    SqlCommand updatePass = new SqlCommand("update kayitlar SET Password='" + textBox3.Text + "' where ID='" + ID + "'");
+                    SqlCommand updatePass = new SqlCommand("update kayitlar SET Password='" + textBox3.Text + "' where ID='" + ID + "'",bgln);
+                    updatePass.ExecuteNonQuery();
                     bgln.Close();
                     label7.Text = "Şifre Başarıyla Güncellendi.";
                     label7.Visible = true;
