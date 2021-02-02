@@ -18,6 +18,7 @@ namespace Music
         string gonderilecekMailAdresi = "", kisiIsmi = "";
         bool mailKontrol = false;
         int sifre = 0, saniye = 120, ID;
+        /*Değişkenlerimi oluşturuyorum ve database'e bağlantı oluşturuyorum.*/
         public forgot_password()
         {
             InitializeComponent();
@@ -30,7 +31,6 @@ namespace Music
             SqlDataReader oku = okur.ExecuteReader();
             while (oku.Read())
             {
-                Console.WriteLine("Mail) " + oku["EMail"].ToString().Trim().ToLower());
                 if (oku["EMail"].ToString().Trim().ToLower() == textBox1.Text.ToLower().Trim())
                 {
                     ID = Convert.ToInt32(oku["ID"].ToString().Trim());
@@ -38,9 +38,12 @@ namespace Music
                     mailKontrol = true;
                 }
             }
+            /*Bağlantıyı acıyorum ve okuma yapıyorum. Okurken eğer istenen mail'e gelirse mailKontrolu true yapıp o kullanıcının ıd'sini vs. tutuyorum ki daha sonra güncellemek
+             için kullanacağım.*/
             if (mailKontrol == false)
             {
                 MessageBox.Show("Bu mail kayıtlı değil= " + textBox1.Text, "Mail Yok", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                /*Eğer mail kontrol false olarak kalırsa mail yok demektir.*/
             }
             else if (mailKontrol == true)
             {
@@ -57,15 +60,18 @@ namespace Music
                 button2.Visible = true;
                 label6.Visible = true;
                 mailGonder();
+                /*Eğer mail varsa bazı componentleri gizleyip bazılarını acıyorum ve mail gönderiyorum.*/
             }
             mailKontrol = false;
             bgln.Close();
+            /*En son cıkmadan önce tekrar mailKontrol false yapıyorum ve bağlantıyı kapatıyorum.*/
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             mailGonder();
             button3.Visible = false;
+            /*Tekrar mail göndere basılırsa yeniden mail gönderiyorum. Daha sonra buttonu gizliyorum.*/
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -73,6 +79,7 @@ namespace Music
             Giris frm = new Giris();
             frm.Show();
             this.Close();
+            /*Geri tuşuna basılırsa bu pencereyi kapatıp girişe gönüyorum*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -100,9 +107,11 @@ namespace Music
 
                 }
             }
+            /*Şifre ve kodu denetliyorum. Yapılan yanlış olursa hatalar basıyorum doğruysa database'den güncelliyorum.*/
             else
             {
                 MessageBox.Show("Kodu yanlış girdiniz!", "Giriş Kodu Yanlış", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                /*Kod yanlış ise bunu basıyorum.*/
             }
         }
 
@@ -114,6 +123,7 @@ namespace Music
             {
                 button3.Visible = true;
             }
+            /*Zamanlayıcı sayesinde 120 saniye dolarsa tekrar mail gönderi aktifleştiriyorum.*/
         }
 
         public int mailGonder()
@@ -133,6 +143,9 @@ namespace Music
             smtp.Send(email);
             timer1.Start();
             return 1;
+            /*MailMessage nesnesi tanımlıyorum. smpt nesnesi tanımlıyorum. Daha sonra bir email ve şifre veriyorum. SMtp portu veriyorum (TR için 587) Host'u veriyorum
+             Bu parametreler bana mail gönderebilmem için gerekli. Sonra random nesnesi belirliyorum. Random nesnesi sayesinde kod göndericem. Daha sonra Kişinin mail
+            adresine gidecek şablonu yazıyorum ve kodu'da yazarak gönderiyorum.*/
         }
     }
 }
